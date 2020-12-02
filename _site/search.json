@@ -1,0 +1,21 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2020-12-02T22:15:57+03:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Pathology-Articles-from-Turkey",
+      "description": "Welcome to the website. I hope you enjoy it!\n",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2020-12-02T22:15:59+03:00"
+    }
+  ],
+  "collections": []
+}
