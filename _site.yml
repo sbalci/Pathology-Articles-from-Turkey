@@ -2,7 +2,7 @@ name: "Pathology-Articles-from-Turkey"
 title: "Pathology-Articles-from-Turkey"
 description: |
   Pathology-Articles-from-Turkey
-output_dir: "docs"
+output_dir: "_site"
 navbar:
   right:
     - text: "Home"
