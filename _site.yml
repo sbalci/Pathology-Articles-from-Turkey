@@ -1,0 +1,12 @@
+name: "Pathology-Articles-from-Turkey"
+title: "Pathology-Articles-from-Turkey"
+description: |
+  Pathology-Articles-from-Turkey
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
