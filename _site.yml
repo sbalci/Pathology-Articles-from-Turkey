@@ -1,7 +1,7 @@
-name: "Pathology-Articles-from-Turkey"
-title: "Pathology-Articles-from-Turkey"
+name: "Pathology Articles from Turkey"
+title: "Pathology Articles from Turkey"
 description: |
-  Pathology-Articles-from-Turkey
+  Pathology Articles from Turkey
 output_dir: "_site"
 navbar:
   right:
@@ -9,5 +9,7 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+output_dir: "_site"
+site: distill::distill_website
 output: distill::distill_article
 exclude: ["willadd"]
