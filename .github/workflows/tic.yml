@@ -121,7 +121,7 @@ jobs:
 
 
 
-     - name: "search PubMed"
+      - name: "search PubMed"
         run: Rscript -e "source(file = 'R/searchPubMed.R')"
 
 
