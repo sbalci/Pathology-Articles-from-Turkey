@@ -1,0 +1,134 @@
+---
+title: "PBPath Journal Watch"
+output: html_document
+---
+
+
+---
+
+# PBPath Journal Watch Articles {.tabset .tabset-fade .tabset-pills #pbpath_jw}
+
+---
+
+\pagebreak
+
+
+## Pancreas {#pancreas}
+
+---
+
+
+`r paste(knitr::knit(text = out_pancreas), collapse = '\n\n\n')`
+
+
+```{r df_pancreas2}
+df_pancreas2 <- readr::read_csv(file = "data/pancreasarticles.txt",
+                               col_names = TRUE)
+df_pancreas2[["PMID"]] <- as.character(df_pancreas2[["PMID"]])
+
+```
+
+```{r df_pancreas2 table, layout="l-body-outset"}
+rmarkdown::paged_table(df_pancreas2)
+```
+
+
+
+
+
+<a href="#top" target="_self">Back to top</a>
+
+---
+
+\pagebreak
+
+
+
+## Gallbladder {#gallbladder}
+
+---
+
+`r paste(knitr::knit(text = out_gallbladder), collapse = '\n\n\n')`
+
+
+```{r df_gb2}
+df_gb2 <- readr::read_csv(file = "data/gallbladderarticles.txt",
+                          col_names = TRUE)
+df_gb2[["PMID"]] <- as.character(df_gb2[["PMID"]])
+
+```
+
+```{r df_gb2 table, layout="l-body-outset"}
+rmarkdown::paged_table(df_gb2)
+```
+
+
+
+
+
+<a href="#top" target="_self">Back to top</a>
+
+---
+
+\pagebreak
+
+
+## Bile Duct {#bileduct}
+
+---
+
+
+`r paste(knitr::knit(text = out_bileduct), collapse = '\n\n\n')`
+
+
+```{r df_bd2}
+df_bd2 <- readr::read_csv(file = "data/bileductarticles.txt",
+                         col_names = TRUE)
+df_bd2[["PMID"]] <- as.character(df_bd2[["PMID"]])
+
+```
+
+```{r df_bd2 table, layout="l-body-outset"}
+rmarkdown::paged_table(df_bd2)
+```
+
+
+
+
+<a href="#top" target="_self">Back to top</a>
+
+---
+
+\pagebreak
+
+
+## Ampulla {#ampulla}
+
+---
+
+
+`r paste(knitr::knit(text = out_ampulla), collapse = '\n\n\n')`
+
+
+```{r df_ampulla2}
+df_ampulla2 <- readr::read_csv(file = "data/ampullaarticles.txt",
+                               col_names = TRUE)
+df_ampulla2[["PMID"]] <- as.character(df_ampulla2[["PMID"]])
+
+```
+
+```{r df_ampulla2 table, layout="l-body-outset"}
+rmarkdown::paged_table(df_ampulla2)
+```
+
+
+
+
+
+
+<a href="#top" target="_self">Back to top</a>
+
+---
+
+\pagebreak
+

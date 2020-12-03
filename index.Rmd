@@ -1,18 +1,39 @@
 ---
-title: "Pathology-Articles-from-Turkey"
-description: |
-  Welcome to the website. I hope you enjoy it!
-site: distill::distill_website
+title: "Pancreatobiliary Pathology Society Journal Watch"
+date: "Last Update on `r format(Sys.Date())`"
+subtitle: Recent Articles that will be Selected
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+🔬🔬🔬🔬 UNDER CONSTRUCTION 🛠⛔️⚠️🔩
 
-# Learn more about creating websites with Distill at:
-# https://rstudio.github.io/distill/website.html
+---
 
-# Learn more about publishing to GitHub Pages at:
-# https://rstudio.github.io/distill/publish_website.html#github-pages
+**Welcome to the PBPath Journal Watch!**  
 
+This bi-monthly journal watch features exciting recently published pancreas and biliary pathology articles that will provide up to date medical knowledge in our field. These articles will be showcased in several convenient categories, including surgical pathology, cytopathology, molecular pathology, pancreas, gallbladder, bile ducts, and ampulla among others. The articles in each category are in no particular order. See the list of journals we search regularly *[here](http://pbpath.org/pbpath-journal-watch/)*. Previous months’ issues may be found in our *[archive](http://pbpath.org/journal-watch-archive/)* and you may see *[drafts of the upcoming issue here](http://pbpath.org/journal-watch-upcoming-issue/)*.  
+
+We encourage members to actively participate by recommending new articles and providing *[feedback](https://pbpath.org/contact-us/)*.  
+
+**We hope that you will enjoy the new PBPath Journal Watch!**
+
+
+
+---
+
+
+```{r}
+Sys.time()
+```
+
+
+```{r global_options, include=FALSE}
+# knitr::opts_chunk$set(cache = TRUE)
+```
+
+
+
+```{r search PubMed, cache=FALSE}
+source(file = "R/loadLibrary.R")
+# source(file = "searchPubMed.R")
 ```
 
