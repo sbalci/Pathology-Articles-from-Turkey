@@ -7,7 +7,7 @@ on:
   # for now, CRON jobs only run on the default branch of the repo (i.e. usually on master)
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: "0 4 * * SUN"
+    - cron: "0 10 * * *"
 
 name: tic
 
@@ -104,7 +104,6 @@ jobs:
           Rscript -e "remotes::install_github('ropensci/tic')" -e "print(tic::dsl_load())" -e "tic::prepare_all_stages()" -e "tic::before_install()" -e "tic::install()"
 
 
-
 # added by Serdar
 
       - name: "Add Libraries"
@@ -118,8 +117,6 @@ jobs:
           Rscript -e "if (!requireNamespace('RefManageR')) install.packages('RefManageR', type = 'source')"
           Rscript -e "if (!requireNamespace('rmarkdown')) install.packages('rmarkdown', type = 'source')"
           Rscript -e "if (!requireNamespace('distill')) install.packages('distill', type = 'source')"
-
-
 
       - name: "search PubMed"
         run: Rscript -e "source(file = 'searchPubMed.R')"
@@ -137,13 +134,6 @@ jobs:
           # branch: B77 #ignore if your branch is master
           github_token: ${{ secrets.GITHUB_TOKEN }}
           force: true
-
-
-
-
-
-
-
 
 
       - name: "[Stage] Script"
