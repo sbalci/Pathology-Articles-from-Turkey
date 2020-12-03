@@ -122,7 +122,7 @@ jobs:
 
 
       - name: "search PubMed"
-        run: Rscript -e "source(file = 'R/searchPubMed.R')"
+        run: Rscript -e "source(file = 'searchPubMed.R')"
 
 
       - name: Commit files
