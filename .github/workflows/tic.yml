@@ -119,7 +119,7 @@ jobs:
           Rscript -e "if (!requireNamespace('distill')) install.packages('distill', type = 'source')"
 
       - name: "search PubMed"
-        run: Rscript -e "source(file = '.R/searchPubMed.R')"
+        run: Rscript -e "source(file = './R/searchPubMed.R')"
 
 
       - name: Commit files
