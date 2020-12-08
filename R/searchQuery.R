@@ -25,11 +25,22 @@
 #            " AND hasabstract",
 #            collapse = "")
 
-searchQuery_ampulla     <-
-    paste0("(",
-           topic_ampulla,
-           ") AND (" ,
-           journals,
-           ")",
-           " AND hasabstract",
-           collapse = "")
+# searchQuery_ampulla     <-
+#     paste0("(",
+#            topic_ampulla,
+#            ") AND (" ,
+#            journals,
+#            ")",
+#            " AND hasabstract",
+#            collapse = "")
+
+searchQuery     <-
+  paste0("(",
+         "'Turkey'[Affiliation]",
+         # OR 'Türkiye'[Affiliation]",
+         ") AND (",
+         "'pathology'[Affiliation] OR 'patoloji'[Affiliation]",
+         ")",
+         # " AND hasabstract",
+         collapse = "")
+

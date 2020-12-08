@@ -16,11 +16,15 @@
 #     searchQuery_bileduct
 #   )
 
-searchFormula_ampulla <-
+# searchFormula_ampulla <-
+#   paste0(
+#
+#     searchQuery_ampulla
+#   )
+
+searchFormula <-
   paste0(
-
-    searchQuery_ampulla
+    searchQuery
   )
-
 
 

@@ -12,3 +12,9 @@ navbar:
 site: distill::distill_website
 output: distill::distill_article
 exclude: ["willadd"]
+theme: css/theme.css
+creative_commons: CC BY
+twitter:
+    site: "@serdarbalci"
+    creator: "@serdarbalci"
+repository_url: https://github.com/sbalci/Pathology-Articles-from-Turkey

@@ -1,3 +1,34 @@
+# articles ----
+
+new_articles <- NULL
+new_articles$V1 <- PMIDs_articles
+new_articles <- as.data.frame(new_articles)
+
+PMIDs <- read.csv(file = "data/PMIDs.txt",
+                          header = FALSE
+)
+
+PMIDs <- rbind(PMIDs, new_articles)
+
+PMIDs <- unique(PMIDs)
+
+exclude_PMIDs <- read.csv(file = "data/exclude_PMIDs.txt",
+                                  header = FALSE
+)
+
+PMIDs2 <- PMIDs$V1[! PMIDs$V1 %in% exclude_PMIDs$V1]
+
+PMIDs <- NULL
+PMIDs$V1 <- PMIDs2
+PMIDs <- as.data.frame(PMIDs)
+
+readr::write_csv(x = PMIDs,
+                 file = "data/PMIDs.txt",
+                 col_names = FALSE
+)
+
+
+
 # # pancreas ----
 #
 # new_pancreas_articles <- NULL
@@ -29,36 +60,36 @@
 #                  col_names = FALSE
 # )
 
-# ampulla ----
-
-new_ampulla_articles <- NULL
-new_ampulla_articles$V1 <- PMIDs_ampulla_articles
-new_ampulla_articles <- as.data.frame(new_ampulla_articles)
-
-ampulla_PMIDs <- read.csv(file = "data/ampulla_PMIDs.txt",
-                          header = FALSE
-)
-
-ampulla_PMIDs <- rbind(ampulla_PMIDs, new_ampulla_articles)
-
-ampulla_PMIDs <- unique(ampulla_PMIDs)
-
-
-exclude_ampulla_PMIDs <- read.csv(file = "data/exclude_ampulla_PMIDs.txt",
-                                  header = FALSE
-)
-
-
-ampulla_PMIDs2 <- ampulla_PMIDs$V1[! ampulla_PMIDs$V1 %in% exclude_ampulla_PMIDs$V1]
-
-ampulla_PMIDs <- NULL
-ampulla_PMIDs$V1 <- ampulla_PMIDs2
-ampulla_PMIDs <- as.data.frame(ampulla_PMIDs)
-
-readr::write_csv(x = ampulla_PMIDs,
-                 file = "data/ampulla_PMIDs.txt",
-                 col_names = FALSE
-)
+# # ampulla ----
+#
+# new_ampulla_articles <- NULL
+# new_ampulla_articles$V1 <- PMIDs_ampulla_articles
+# new_ampulla_articles <- as.data.frame(new_ampulla_articles)
+#
+# ampulla_PMIDs <- read.csv(file = "data/ampulla_PMIDs.txt",
+#                           header = FALSE
+# )
+#
+# ampulla_PMIDs <- rbind(ampulla_PMIDs, new_ampulla_articles)
+#
+# ampulla_PMIDs <- unique(ampulla_PMIDs)
+#
+#
+# exclude_ampulla_PMIDs <- read.csv(file = "data/exclude_ampulla_PMIDs.txt",
+#                                   header = FALSE
+# )
+#
+#
+# ampulla_PMIDs2 <- ampulla_PMIDs$V1[! ampulla_PMIDs$V1 %in% exclude_ampulla_PMIDs$V1]
+#
+# ampulla_PMIDs <- NULL
+# ampulla_PMIDs$V1 <- ampulla_PMIDs2
+# ampulla_PMIDs <- as.data.frame(ampulla_PMIDs)
+#
+# readr::write_csv(x = ampulla_PMIDs,
+#                  file = "data/ampulla_PMIDs.txt",
+#                  col_names = FALSE
+# )
 
 # # gallbladder ----
 #
@@ -93,7 +124,7 @@ readr::write_csv(x = ampulla_PMIDs,
 # )
 #
 
-# # bileduct
+# # bileduct ----
 #
 # new_bileduct_articles <- NULL
 # new_bileduct_articles$V1 <- PMIDs_bileduct_articles

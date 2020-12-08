@@ -22,13 +22,20 @@
 #
 # Sys.sleep(10)
 
-ampulla_articles <- RISmed::EUtilsSummary(query = searchFormula_ampulla,
-                                           type = 'esearch',
-                                           db = 'pubmed',
-                                           reldate = 60
+# ampulla_articles <- RISmed::EUtilsSummary(query = searchFormula_ampulla,
+#                                            type = 'esearch',
+#                                            db = 'pubmed',
+#                                            reldate = 60
+# )
+#
+# Sys.sleep(10)
+
+articles <- RISmed::EUtilsSummary(
+  query = '(Turkey[Affiliation]) AND (pathology[Affiliation] OR patoloji[Affiliation])',
+                                  type = 'esearch',
+                                  db = 'pubmed',
+                                  reldate = 60
 )
 
 Sys.sleep(10)
-
-
 

@@ -1,3 +1,95 @@
+# articles ----
+
+# fetched_articles
+
+names_df_articles <-
+  slotNames(fetched_articles)
+
+df_articles <-
+  setNames(data.frame(matrix(
+    ncol = length(names_df_articles),
+    nrow = length(
+      slot(
+        fetched_articles,
+        names_df_articles[2]
+      )
+    )
+  )),
+  nm = names_df_articles
+  )
+
+
+df_articles[, "PMID"]              <- fetched_articles@PMID
+df_articles[, "YearArticleDate"]   <- fetched_articles@YearArticleDate
+df_articles[, "MonthArticleDate"]  <- fetched_articles@MonthArticleDate
+df_articles[, "ISSN"]              <- fetched_articles@ISSN
+df_articles[, "Title"]             <- fetched_articles@Title
+df_articles[, "ArticleTitle"]      <- fetched_articles@ArticleTitle
+df_articles[, "ELocationID"]       <- fetched_articles@ELocationID
+df_articles[, "AbstractText"]      <- fetched_articles@AbstractText
+df_articles[, "Language"]          <- fetched_articles@Language
+df_articles[, "MedlineTA"]         <- fetched_articles@MedlineTA
+df_articles[, "NlmUniqueID"]       <- fetched_articles@NlmUniqueID
+df_articles[, "ISSNLinking"]       <- fetched_articles@ISSNLinking
+df_articles[, "PublicationStatus"] <- fetched_articles@PublicationStatus
+df_articles[, "ArticleId"]         <- fetched_articles@ArticleId
+df_articles[, "DOI"]               <- fetched_articles@DOI
+df_articles[, "Volume"]            <- fetched_articles@Volume
+df_articles[, "Issue"]             <- fetched_articles@Issue
+df_articles[, "ISOAbbreviation"]   <- fetched_articles@ISOAbbreviation
+
+df_articles <- df_articles[, c(
+  "PMID",
+  "YearArticleDate",
+  "MonthArticleDate",
+  "ISSN",
+  "Title",
+  "ArticleTitle",
+  "ELocationID",
+  "AbstractText",
+  "Language",
+  "MedlineTA",
+  "NlmUniqueID",
+  "ISSNLinking",
+  "PublicationStatus",
+  "ArticleId",
+  "DOI",
+  "Volume",
+  "Issue",
+  "ISOAbbreviation"
+)]
+
+df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
+
+readr::write_csv(x = df_articles,
+                 file = "data/articles.txt",
+                 col_names = TRUE,
+                 append = TRUE)
+
+df_articles <- readr::read_csv(file = "data/articles.txt", col_names = TRUE)
+
+df_articles <- unique(df_articles)
+
+df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
+
+exclude_PMIDs <- read.csv(file = "data/exclude_PMIDs.txt",
+                                  header = FALSE,
+                                  col.names = "PMID",
+                                  colClasses = "character"
+)
+
+df_articles <- dplyr::anti_join(df_articles, exclude_PMIDs,
+                               by = "PMID")
+
+readr::write_csv(x = df_articles,
+                 file = "data/articles.txt",
+                 col_names = TRUE
+)
+
+
+
+
+
 # # pancreas ----
 #
 # # fetched_pancreas_articles
@@ -87,95 +179,95 @@
 # )
 #
 
-# ampulla ----
-
-# fetched_ampulla_articles
-
-
-names_df_ampulla_articles <-
-  slotNames(fetched_ampulla_articles)
-
-df_ampulla <-
-  setNames(data.frame(matrix(
-    ncol = length(names_df_ampulla_articles),
-    nrow = length(
-      slot(
-        fetched_ampulla_articles,
-        names_df_ampulla_articles[2]
-      )
-    )
-  )),
-  nm = names_df_ampulla_articles
-  )
-
-
-df_ampulla[, "PMID"]              <- fetched_ampulla_articles@PMID
-df_ampulla[, "YearArticleDate"]   <- fetched_ampulla_articles@YearArticleDate
-df_ampulla[, "MonthArticleDate"]  <- fetched_ampulla_articles@MonthArticleDate
-df_ampulla[, "ISSN"]              <- fetched_ampulla_articles@ISSN
-df_ampulla[, "Title"]             <- fetched_ampulla_articles@Title
-df_ampulla[, "ArticleTitle"]      <- fetched_ampulla_articles@ArticleTitle
-df_ampulla[, "ELocationID"]       <- fetched_ampulla_articles@ELocationID
-df_ampulla[, "AbstractText"]      <- fetched_ampulla_articles@AbstractText
-df_ampulla[, "Language"]          <- fetched_ampulla_articles@Language
-df_ampulla[, "MedlineTA"]         <- fetched_ampulla_articles@MedlineTA
-df_ampulla[, "NlmUniqueID"]       <- fetched_ampulla_articles@NlmUniqueID
-df_ampulla[, "ISSNLinking"]       <- fetched_ampulla_articles@ISSNLinking
-df_ampulla[, "PublicationStatus"] <- fetched_ampulla_articles@PublicationStatus
-df_ampulla[, "ArticleId"]         <- fetched_ampulla_articles@ArticleId
-df_ampulla[, "DOI"]               <- fetched_ampulla_articles@DOI
-df_ampulla[, "Volume"]            <- fetched_ampulla_articles@Volume
-df_ampulla[, "Issue"]             <- fetched_ampulla_articles@Issue
-df_ampulla[, "ISOAbbreviation"]   <- fetched_ampulla_articles@ISOAbbreviation
-
-df_ampulla <- df_ampulla[, c(
-  "PMID",
-  "YearArticleDate",
-  "MonthArticleDate",
-  "ISSN",
-  "Title",
-  "ArticleTitle",
-  "ELocationID",
-  "AbstractText",
-  "Language",
-  "MedlineTA",
-  "NlmUniqueID",
-  "ISSNLinking",
-  "PublicationStatus",
-  "ArticleId",
-  "DOI",
-  "Volume",
-  "Issue",
-  "ISOAbbreviation"
-)]
-
-df_ampulla[["PMID"]] <- as.character(df_ampulla[["PMID"]])
-
-readr::write_csv(x = df_ampulla,
-                 file = "data/ampullaarticles.txt",
-                 col_names = TRUE,
-                 append = TRUE)
-
-df_ampulla <- readr::read_csv(file = "data/ampullaarticles.txt", col_names = TRUE)
-
-df_ampulla <- unique(df_ampulla)
-
-df_ampulla[["PMID"]] <- as.character(df_ampulla[["PMID"]])
-
-exclude_ampulla_PMIDs <- read.csv(file = "data/exclude_ampulla_PMIDs.txt",
-                                   header = FALSE,
-                                   col.names = "PMID",
-                                   colClasses = "character"
-)
-
-df_ampulla <- dplyr::anti_join(df_ampulla, exclude_ampulla_PMIDs,
-                               by = "PMID")
-
-readr::write_csv(x = df_ampulla,
-                 file = "data/ampullaarticles.txt",
-                 col_names = TRUE
-)
-
+# # ampulla ----
+#
+# # fetched_ampulla_articles
+#
+#
+# names_df_ampulla_articles <-
+#   slotNames(fetched_ampulla_articles)
+#
+# df_ampulla <-
+#   setNames(data.frame(matrix(
+#     ncol = length(names_df_ampulla_articles),
+#     nrow = length(
+#       slot(
+#         fetched_ampulla_articles,
+#         names_df_ampulla_articles[2]
+#       )
+#     )
+#   )),
+#   nm = names_df_ampulla_articles
+#   )
+#
+#
+# df_ampulla[, "PMID"]              <- fetched_ampulla_articles@PMID
+# df_ampulla[, "YearArticleDate"]   <- fetched_ampulla_articles@YearArticleDate
+# df_ampulla[, "MonthArticleDate"]  <- fetched_ampulla_articles@MonthArticleDate
+# df_ampulla[, "ISSN"]              <- fetched_ampulla_articles@ISSN
+# df_ampulla[, "Title"]             <- fetched_ampulla_articles@Title
+# df_ampulla[, "ArticleTitle"]      <- fetched_ampulla_articles@ArticleTitle
+# df_ampulla[, "ELocationID"]       <- fetched_ampulla_articles@ELocationID
+# df_ampulla[, "AbstractText"]      <- fetched_ampulla_articles@AbstractText
+# df_ampulla[, "Language"]          <- fetched_ampulla_articles@Language
+# df_ampulla[, "MedlineTA"]         <- fetched_ampulla_articles@MedlineTA
+# df_ampulla[, "NlmUniqueID"]       <- fetched_ampulla_articles@NlmUniqueID
+# df_ampulla[, "ISSNLinking"]       <- fetched_ampulla_articles@ISSNLinking
+# df_ampulla[, "PublicationStatus"] <- fetched_ampulla_articles@PublicationStatus
+# df_ampulla[, "ArticleId"]         <- fetched_ampulla_articles@ArticleId
+# df_ampulla[, "DOI"]               <- fetched_ampulla_articles@DOI
+# df_ampulla[, "Volume"]            <- fetched_ampulla_articles@Volume
+# df_ampulla[, "Issue"]             <- fetched_ampulla_articles@Issue
+# df_ampulla[, "ISOAbbreviation"]   <- fetched_ampulla_articles@ISOAbbreviation
+#
+# df_ampulla <- df_ampulla[, c(
+#   "PMID",
+#   "YearArticleDate",
+#   "MonthArticleDate",
+#   "ISSN",
+#   "Title",
+#   "ArticleTitle",
+#   "ELocationID",
+#   "AbstractText",
+#   "Language",
+#   "MedlineTA",
+#   "NlmUniqueID",
+#   "ISSNLinking",
+#   "PublicationStatus",
+#   "ArticleId",
+#   "DOI",
+#   "Volume",
+#   "Issue",
+#   "ISOAbbreviation"
+# )]
+#
+# df_ampulla[["PMID"]] <- as.character(df_ampulla[["PMID"]])
+#
+# readr::write_csv(x = df_ampulla,
+#                  file = "data/ampullaarticles.txt",
+#                  col_names = TRUE,
+#                  append = TRUE)
+#
+# df_ampulla <- readr::read_csv(file = "data/ampullaarticles.txt", col_names = TRUE)
+#
+# df_ampulla <- unique(df_ampulla)
+#
+# df_ampulla[["PMID"]] <- as.character(df_ampulla[["PMID"]])
+#
+# exclude_ampulla_PMIDs <- read.csv(file = "data/exclude_ampulla_PMIDs.txt",
+#                                    header = FALSE,
+#                                    col.names = "PMID",
+#                                    colClasses = "character"
+# )
+#
+# df_ampulla <- dplyr::anti_join(df_ampulla, exclude_ampulla_PMIDs,
+#                                by = "PMID")
+#
+# readr::write_csv(x = df_ampulla,
+#                  file = "data/ampullaarticles.txt",
+#                  col_names = TRUE
+# )
+#
 
 # # bileduct ----
 #
