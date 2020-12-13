@@ -63,12 +63,13 @@ df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
 
 readr::write_csv(x = df_articles,
                  file = "data/articles.txt",
-                 col_names = TRUE,
+                 # col_names = TRUE,
                  append = TRUE)
 
 df_articles <- readr::read_csv(file = "data/articles.txt", col_names = TRUE)
 
-df_articles <- unique(df_articles)
+df_articles <- unique(x = df_articles,
+                      fromLast = TRUE)
 
 df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
 
