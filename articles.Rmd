@@ -1,0 +1,44 @@
+---
+title: "List of Pathology Articles From Turkey"
+---
+
+```{r global_options}
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      include = TRUE,
+                      warning = FALSE,
+                      message = FALSE,
+                      cache = FALSE
+                      )
+```
+
+
+
+```{r read articles_PMIDs, include=FALSE}
+
+articles <- readr::read_csv(file = "data/articles.txt", col_names = TRUE)
+
+tidyr::replace_na(articles, list(c("")))
+
+articles_PMIDs <- articles$PMID
+
+```
+
+
+```{r articles rmd, include=FALSE}
+out_articles = NULL
+for (i in 1:length(articles_PMIDs)) {
+  value.articles_PMID <- articles_PMIDs[i]
+  out_articles = c(out_articles,
+          knitr::knit_expand('_articles_child.Rmd')
+  )
+  }
+
+```
+
+
+
+`r  paste(knitr::knit(text = out_articles), collapse = '\n\n\n')`
+
+
+

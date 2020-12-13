@@ -1,0 +1,86 @@
+### Article {{i}}
+
+#### Article `r  '{{value.articles_PMID}}'`
+
+```{r {{value.articles_PMID}}, include=FALSE}
+
+PMID <- '{{value.articles_PMID}}'
+
+tr_article <- articles[articles[["PMID"]] == PMID, ]
+
+
+```
+
+
+```{r include=FALSE}
+PubMedString <- "PubMed: https://www.ncbi.nlm.nih.gov/pubmed/?term="
+doiString <- "doi: https://doi.org/"
+```
+
+
+```{r include=FALSE}
+
+article_citation <- paste0(
+  tr_article$ArticleTitle,
+  ' ',
+  tr_article$Title,
+                   ' ',
+                   tr_article$YearArticleDate,
+                   ' ',
+                   tr_article$MonthArticleDate,
+                   ';',
+                   tr_article$Volume,
+                   '(',
+                   tr_article$Issue,
+                   ')'
+                   )
+
+article_citation <- gsub(pattern = 'NA', replacement = '', x = article_citation)
+
+PubMed_link <- paste0(PubMedString, tr_article$PMID)
+
+doi_link <- paste0(doiString, tr_article$DOI)
+
+aside <- paste0(
+  "[doi: ", tr_article$DOI, "](https://doi.org", tr_article$DOI, ")  " 
+  
+  
+  
+#   "
+# [PMID: 32857459](https://pubmed.ncbi.nlm.nih.gov/32857459/)
+# <span class="__dimensions_badge_embed__" data-doi="10.1002/cncr.33135" data-style="small_circle"></span>
+# <span class="altmetric-embed" data-badge-popover="right" data-badge-type="donut" data-doi="10.1002/cncr.33135"></span>
+# [Semantic](https://api.semanticscholar.org/10.1002/cncr.33135?include_unknown_references=true)
+# [Scite](https://scite.ai/reports/10.1002/cncr.33135)
+# [Connections](https://www.connectedpapers.com/main/2f258c96e2bea4ed973b3ba67ffde9e0cc3d56c9/Frequency-and-clinicopathologic-associations-of-DNA-mismatch-repair-protein-deficiency-in-ampullary-carcinoma-Routine-testing-is-indicated/graph)
+# "
+)
+
+
+```
+
+
+
+<details open> <summary>
+- **`r  tr_article$ArticleTitle`**
+</summary>
+
+*`r  article_citation`*
+
+`r  PubMed_link`
+
+`r  tr_article$AbstractText`
+
+<!-- `r  doi_link` -->
+
+</details>
+
+<aside>
+`r aside`
+<hr>
+</aside>
+
+
+---
+
+
