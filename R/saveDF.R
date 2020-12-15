@@ -71,6 +71,9 @@ df_articles <- readr::read_csv(file = "data/articles.txt", col_names = TRUE)
 df_articles <- unique(x = df_articles,
                       fromLast = TRUE)
 
+df_articles2 <- dplyr::distinct(df_articles, PMID, .keep_all = TRUE)
+
+
 df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
 
 exclude_PMIDs <- read.csv(file = "data/exclude_PMIDs.txt",
