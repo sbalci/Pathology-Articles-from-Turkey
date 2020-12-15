@@ -69,9 +69,13 @@ readr::write_csv(x = df_articles,
 df_articles <- readr::read_csv(file = "data/articles.txt", col_names = TRUE)
 
 df_articles <- unique(x = df_articles,
-                      fromLast = TRUE)
+                      fromLast = TRUE
+                      )
 
-df_articles2 <- dplyr::distinct(df_articles, PMID, .keep_all = TRUE)
+df_articles <- dplyr::distinct(df_articles,
+                                PMID,
+                                .keep_all = TRUE
+                                )
 
 
 df_articles[["PMID"]] <- as.character(df_articles[["PMID"]])
