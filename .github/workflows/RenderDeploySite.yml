@@ -23,6 +23,7 @@ jobs:
           install.packages("distill")
           install.packages("pagedown")
           install.packages("fs")
+          install.packages("readr")
         shell: Rscript {0}
 
       - name: Render Site
