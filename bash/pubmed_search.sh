@@ -1,0 +1,1 @@
+esearch -db pubmed -query "(psychiatry[MeSH Major Topic] OR psychiatry[Affiliation] OR psychiatry[Title/Abstract]) AND hasabstract" -released last_year  | efetch -db pubmed -format xml > ~/psychiatry/pubmeddata/psychiatry_xml.xml
