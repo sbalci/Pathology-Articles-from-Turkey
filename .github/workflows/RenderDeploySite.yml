@@ -1,14 +1,12 @@
-# copied from https://github.com/etiennebacher/personal_website_distill/blob/master/.github/workflows/main.yml
-# https://github.com/rstudio/distill/issues/350
+name: Render Distill Push Private
 
 on:
+  workflow_dispatch:
   push:
-    branches: master
-
-name: Render & Deploy Site
 
 jobs:
   build:
+    name: Prepare System
     runs-on: macOS-latest
     steps:
       - uses: actions/checkout@v2
@@ -34,13 +32,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          remotes::install_deps(dependencies = TRUE)
-          install.packages("pkgdown", type = "binary")
-          install.packages("rmarkdown")
-          install.packages("distill")
-          install.packages("pagedown")
-          install.packages("fs")
-          install.packages("readr")
+          if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes")}
+          if (!requireNamespace("pkgdown", quietly = TRUE)) {install.packages("pkgdown", type = "binary")}
+          if (!requireNamespace("rmarkdown", quietly = TRUE)) {install.packages("rmarkdown")}
+          if (!requireNamespace("pagedown", quietly = TRUE)) {install.packages("pagedown")}          
+          if (!requireNamespace("distill", quietly = TRUE)) {install.packages("distill")}
+          if (!requireNamespace("fs", quietly = TRUE)) {install.packages("fs")}
+          if (!requireNamespace("readr", quietly = TRUE)) {install.packages("readr")}
         shell: Rscript {0}
 
       - name: Render Site
@@ -49,8 +47,21 @@ jobs:
         run: Rscript -e 'fs::file_copy("404.md", "docs/404.md")'
       - name: "Remove 404.html"
         run: Rscript -e 'fs::file_delete("docs/404.html")'
-      - name: Commit results
+
+
+
+      - name: Commit results to main branch
         run: |
-          git add -A
-          git commit -m 'Rebuild site' || echo "No changes to commit"
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git commit -m "CI added changes `date +'%Y-%m-%d %H:%M:%S'`" || echo "No changes to commit"
           git push origin || echo "No changes to commit"
+
+      - name: Push changes # push the output folder to your repo
+        uses: ad-m/github-push-action@master
+        with:
+          branch: main
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # WORKFLOW_GITHUB_TOKEN
+          force: true

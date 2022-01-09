@@ -1,0 +1,17 @@
+Package: tic.website
+Imports: 
+    attachment,
+    distill,
+    knitr,
+    readr,
+    tidyr,
+    dplyr,
+    magrittr,
+    rentrez,
+    RISmed,
+    readr,
+    RefManageR,
+    rmarkdown,
+    tibble
+Suggests: 
+    rmarkdown
