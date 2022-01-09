@@ -7,7 +7,6 @@ on:
     # * is a special character in YAML so you have to quote this string
       - cron: "0 10 * * *"
 
-
 jobs:
   build:
     name: Prepare System
@@ -51,8 +50,6 @@ jobs:
         run: Rscript -e 'fs::file_copy("404.md", "docs/404.md")'
       - name: "Remove 404.html"
         run: Rscript -e 'fs::file_delete("docs/404.html")'
-
-
 
       - name: Commit results to main branch
         run: |

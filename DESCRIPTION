@@ -1,6 +1,20 @@
-Package: tic.website
-Imports: 
-    attachment,
+Website: Pathology Articles from Turkey
+Title: Pathology Articles from Turkey
+Version: 0.0.0.9000
+Date: 2022-01-09
+Authors@R: 
+    person(given = "Serdar",
+           family = "Balci",
+           role = c("aut", "cre"),
+           email = "serdarbalci@patolojiai.com",
+           comment = c(ORCID = "0000-0002-7852-3851"))
+Maintainer: Serdar Balci <serdarbalci@serdarbalci.com>
+Description: Pathology Articles from Turkey
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 4.1.0)
+Imports:
     distill,
     knitr,
     readr,
@@ -13,5 +27,3 @@ Imports:
     RefManageR,
     rmarkdown,
     tibble
-Suggests: 
-    rmarkdown
