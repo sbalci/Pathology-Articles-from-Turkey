@@ -11,6 +11,9 @@ jobs:
   build:
     name: Prepare System
     runs-on: macOS-latest
+    if: "!contains(github.event.head_commit.message, 'WIP') && contains(github.event.head_commit.message, 'toweb')"
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
@@ -49,9 +52,9 @@ jobs:
       - name: Render Site
         run: Rscript -e 'rmarkdown::render_site(encoding = "UTF-8")'
       - name: Copy redirects
-        run: Rscript -e 'fs::file_copy("404.md", "docs/404.md")'
+        run: Rscript -e 'fs::file_copy("404.md", "_site/404.md")'
       - name: "Remove 404.html"
-        run: Rscript -e 'fs::file_delete("docs/404.html")'
+        run: Rscript -e 'fs::file_delete("_site/404.html")'
 
       - name: Commit results to main branch
         run: |
