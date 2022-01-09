@@ -36,12 +36,14 @@ jobs:
       - name: Install dependencies
         run: |
           if (!requireNamespace("remotes", quietly = TRUE)) {install.packages("remotes")}
+          remotes::install_deps(dependencies = TRUE)
           if (!requireNamespace("pkgdown", quietly = TRUE)) {install.packages("pkgdown", type = "binary")}
           if (!requireNamespace("rmarkdown", quietly = TRUE)) {install.packages("rmarkdown")}
           if (!requireNamespace("pagedown", quietly = TRUE)) {install.packages("pagedown")}          
           if (!requireNamespace("distill", quietly = TRUE)) {install.packages("distill")}
           if (!requireNamespace("fs", quietly = TRUE)) {install.packages("fs")}
           if (!requireNamespace("readr", quietly = TRUE)) {install.packages("readr")}
+
         shell: Rscript {0}
 
       - name: Render Site
