@@ -11,7 +11,7 @@ jobs:
   build:
     name: Prepare System
     runs-on: macOS-latest
-    if: "!contains(github.event.head_commit.message, 'WIP') && contains(github.event.head_commit.message, 'toweb')"
+    if: "!contains(github.event.head_commit.message, 'WIP')"
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
