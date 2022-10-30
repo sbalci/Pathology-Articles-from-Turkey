@@ -2,10 +2,10 @@ name: Render Distill Push Private
 
 on:
   workflow_dispatch:
-  push:
-  schedule:
+#  push:
+#  schedule:
     # * is a special character in YAML so you have to quote this string
-      - cron: "0 10 * * *"
+#      - cron: "0 10 * * *"
 
 jobs:
   build:
